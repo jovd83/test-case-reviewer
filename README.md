@@ -24,7 +24,7 @@ Findings on both tracks are rated `Critical`, `High`, `Medium` or `Low`, each wi
 
 - **It does not design classic test cases from scratch.** Use `test-design-orchestrator` to derive test cases from requirements, and `test-strategy-skill` for the plan above them.
 - **It does not write automation.** No step definitions, Playwright, Cypress or Cucumber code: hand the reviewed artifact to the framework skill.
-- **It does not render or export.** Formatting cases for Xray, Zephyr, TestRail or TestLink is `test-artifact-export-skill`'s job.
+- **It does not render or export.** Formatting cases for Xray, Zephyr, TestRail or TestLink is `test-management-sync`'s job.
 - **It does not judge requirements on their own.** A readiness review of the requirements themselves belongs to `test-analysis-skill`; here they are the oracle.
 
 ## When To Use It
