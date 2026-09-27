@@ -1,192 +1,118 @@
-# Agentic BDD Test Case Mentor
+# Test Case Reviewer
 
-[![Validate Skills](https://github.com/jovd83/agentic-bdd-test-case-mentor/actions/workflows/validate.yml/badge.svg)](https://github.com/jovd83/agentic-bdd-test-case-mentor/actions/workflows/validate.yml)
-[![version](https://img.shields.io/badge/version-1.1.0-blue)](CHANGELOG.md)
+[![Validate Skills](https://github.com/jovd83/test-case-reviewer/actions/workflows/ci.yml/badge.svg)](https://github.com/jovd83/test-case-reviewer/actions/workflows/ci.yml)
+[![version](https://img.shields.io/badge/version-2.0.0-blue)](CHANGELOG.md)
+[![status](https://img.shields.io/badge/status-stable-3fb950)](SKILL.md)
+[![category](https://img.shields.io/badge/category-testing-0a7ea4)](SKILL.md)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/jovd83)
 
-Portable Agent Skill for reviewing, rewriting, generating, and formally assessing BDD and Gherkin artifacts.
-
-This repository packages a standards-aligned skill that helps an agent turn weak or ambiguous BDD into clearer, more traceable, business-readable behavior specifications. It is designed for teams that use Gherkin as a collaboration tool, not as a disguised UI automation script.
+`test-case-reviewer` reviews, scores and mentors drafted tests before they are executed, automated or signed off: classic test cases and suites as well as BDD/Gherkin feature files. It replaces `agentic-bdd-test-case-mentor` and `tss-test-case-reviewer`.
 
 ## What This Skill Does
 
-The skill supports four modes:
+Drafted tests fail in predictable ways whatever their format: they trace to the wrong source, stop at the happy path, assert "success" instead of something observable, and quietly invent the rules they claim to test. The two predecessor skills caught exactly those failures, one for step-based test cases and one for Gherkin, so they now share one intake and one severity scale, with a track for each format.
 
-- `review`: inspect existing scenarios and feature files, rank findings, and call out gaps
-- `rewrite`: improve existing Gherkin while preserving business intent
-- `generate`: create new BDD from requirements, examples, rules, or story text
-- `hybrid`: combine critique with a corrected replacement
+The shared intake decides the track (test cases or BDD), the mode, and the oracle. It ranks the sources of truth from approved business rules down to the artifact's own text. It refuses implementation code as the oracle, because tests that mirror the code pass while the business rule is wrong. And it never invents requirement IDs, personas, tags or rules to make an artifact look complete.
 
-It is especially useful when a user asks for:
+- **Test-case track:** inventory, requirement-to-test traceability, suite architecture, MSS/EXT/ERR path coverage, technique fit (equivalence partitions, boundary values, decision tables, state transitions, use case paths), technical correctness of preconditions, steps, expected results and data, standards compliance, and mentoring. The output is a nine-section scored review.
+- **BDD track:** four modes. `review` finds anti-patterns and coverage gaps; `rewrite` produces business-readable Gherkin; `generate` drafts scenarios from rules, acceptance criteria or example maps; `hybrid` gives findings plus the corrected feature.
 
-- BDD quality review or mentoring
-- Gherkin cleanup and rewrite
-- traceability and coverage analysis
-- coaching-oriented review reports
-- scenario generation from acceptance criteria or business rules
+Findings on both tracks are rated `Critical`, `High`, `Medium` or `Low`, each with evidence and the affected requirement or scenario named.
 
-## What This Skill Is Responsible For
+## What This Skill Does Not Do
 
-The skill is responsible for:
+- **It does not design classic test cases from scratch.** Use `test-design-orchestrator` to derive test cases from requirements, and `test-strategy-skill` for the plan above them.
+- **It does not write automation.** No step definitions, Playwright, Cypress or Cucumber code: hand the reviewed artifact to the framework skill.
+- **It does not render or export.** Formatting cases for Xray, Zephyr, TestRail or TestLink is `test-artifact-export-skill`'s job.
+- **It does not judge requirements on their own.** A readiness review of the requirements themselves belongs to `test-analysis-skill`; here they are the oracle.
 
-- identifying BDD anti-patterns
-- checking oracle quality and confidence
-- assessing scenario structure and path coverage
-- improving business readability and observable outcomes
-- generating or rewriting feature files without inventing unsupported metadata
-- producing consistent review and report outputs
+## When To Use It
 
-The skill is not responsible for:
+Use it when:
 
-- executing automated tests
-- designing framework-specific step definitions
-- binding output to Playwright, Cypress, Cucumber, or another runtime
-- storing hidden long-term memory
-- acting as cross-agent infrastructure
+- someone asks to review, audit, score or critique drafted test cases, UAT scenarios or a regression set;
+- a feature file or set of Gherkin scenarios needs a BDD review, a business-readable rewrite, or scenarios drafted from acceptance criteria;
+- a traceability matrix or suite hierarchy needs checking for gaps, redundancy or an overloaded suite;
+- a junior tester's work needs mentoring with concrete, prioritised feedback;
+- a test-lifecycle chain reaches its case quality gate.
 
-## Design Principles
-
-- Business-readable first: prioritize shared understanding before automation detail.
-- Findings before fluff: when reviewing, lead with what is wrong, risky, or missing.
-- Explicit confidence: weak source material should reduce certainty, not produce hallucinated precision.
-- Minimal hidden behavior: memory is scoped and deliberate.
-- Progressive disclosure: `SKILL.md` stays operational, while detailed heuristics and templates live in `references/` and `assets/`.
-
-## Memory Model
-
-The repository uses a deliberately conservative memory model:
-
-- Runtime memory: temporary reasoning for the current task.
-- Project-local persistent memory: only when the user explicitly asks for a saved report, checklist, or ledger.
-- Shared memory: optional and external to this repository. If needed, integrate via a separate shared-memory skill rather than embedding it here.
-
-Nothing in this skill automatically promotes runtime notes into persistent memory.
+For new test design, automation or requirement analysis, use the sibling skills named above.
 
 ## Repository Layout
 
-```text
-SKILL.md
-README.md
-CHANGELOG.md
-LICENSE
-agents/
-`-- openai.yaml
-assets/
-|-- bdd-feature-template.feature
-`-- review-report-template.md
-references/
-|-- bdd-quality-rules.md
-|-- feature-and-scenario-protocol.md
-|-- intake-and-decision-flow.md
-|-- output-contracts.md
-|-- report-rubric.md
-`-- review-workflow.md
-examples/
-|-- formal-report-request.md
-|-- generation-source.md
-|-- quality-ladder.md
-|-- review-input.feature
-|-- review-request.md
-|-- rewrite-request.md
-`-- rewrite-source.feature
-eval/
-|-- behavior-checklist.md
-|-- eval-report-2026-03-26.md
-|-- forward-test-matrix.md
-`-- trigger-evals.json
-scripts/
-`-- validate_skill_repo.py
-.github/
-`-- workflows/
-    `-- validate.yml
+```
+test-case-reviewer/
+├── SKILL.md                         # shared intake, severity scale, both tracks
+├── agents/openai.yaml               # UI metadata for hosts that read it
+├── references/
+│   ├── test-cases/                  # review workflow, case and suite protocols,
+│   │                                # report template, four graded example sets
+│   └── bdd/                         # intake, review workflow, quality rules,
+│                                    # feature protocol, rubric, output contracts
+├── assets/
+│   ├── bdd-feature-template.feature # full feature file skeleton
+│   └── bdd-review-report-template.md
+├── examples/bdd/                    # review, rewrite, generate and report inputs
+├── eval/
+│   ├── trigger-evals.json           # 38 trigger and near-miss cases (both tracks)
+│   ├── forward-evals.json           # forward tests with expectations (BDD)
+│   ├── forward-test-matrix.md
+│   └── behavior-checklist.md
+├── scripts/validate_skill_repo.py   # packaging validator
+└── .github/workflows/               # validate.yml, ci.yml
 ```
 
 ## Installation
 
-Copy this folder into a skills directory that your host scans for Agent Skills.
+```bash
+npx skills add jovd83/test-case-reviewer
+```
 
-Common conventions include:
+Manual alternative:
 
-- project-local: `.agents/skills/<skill-name>/`
-- user-local: `~/.agents/skills/<skill-name>/`
+```bash
+git clone https://github.com/jovd83/test-case-reviewer.git
+```
 
-The only hard requirement is that the skill directory contains a valid `SKILL.md`.
+Then place the folder where your agent looks for local skills: `~/.agents/skills/`, `~/.cursor/skills/`, or another IDE-specific directory.
 
-## Quick Start
+The skill has no dependencies. The validator needs Python 3.11 or later.
 
-Example prompts that should trigger this skill:
+## Usage
 
-- `Review this feature file for BDD anti-patterns, missing rule branches, and coverage gaps.`
-- `Rewrite these scenarios so they read like business behavior instead of UI steps.`
-- `Generate Gherkin from these acceptance criteria for refund eligibility.`
-- `Create a formal BDD review report with severity-ranked findings and coaching recommendations.`
+Ask in plain words; the skill picks the track and mode.
 
-Start with:
+| Request | Track and mode |
+|---|---|
+| "Review these drafted API test cases against the acceptance criteria" | test cases, review |
+| "Mentor this junior tester's UC-14 scenarios and score them" | test cases, review with scoring and mentoring |
+| "I have 35 cases in one suite: is the structure OK?" | test cases, suite review |
+| "Review this feature file for BDD anti-patterns" | BDD, review |
+| "Rewrite these scenarios so they read like business behavior" | BDD, rewrite |
+| "Generate Gherkin from these refund rules" | BDD, generate |
 
-- [examples/review-request.md](examples/review-request.md)
-- [examples/rewrite-request.md](examples/rewrite-request.md)
-- [examples/formal-report-request.md](examples/formal-report-request.md)
-- [examples/generation-source.md](examples/generation-source.md)
+## Output Contract
 
-## Output Contracts
-
-The skill exposes four primary response shapes:
-
-- review contract
-- rewrite contract
-- generate contract
-- hybrid contract
-
-Formal report structure and scoring guidance are defined separately.
-
-See:
-
-- [references/output-contracts.md](references/output-contracts.md)
-- [references/report-rubric.md](references/report-rubric.md)
-- [assets/review-report-template.md](assets/review-report-template.md)
+- **Test-case track:** executive summary, requirements and traceability, suite architecture (when relevant), coverage, technical correctness, standards compliance, mentoring plan, scoring matrix, action plan. Template: `references/test-cases/report-template.md`.
+- **BDD track:** mode, oracle and confidence, ranked findings, then the artifact for rewrite, generate or hybrid. The formal report uses `references/bdd/report-rubric.md` and `assets/bdd-review-report-template.md`.
 
 ## Validation
 
-This repository includes a repo-local validator so contributors do not need a private toolchain to catch common packaging mistakes.
-
-Run:
-
-```powershell
+```bash
 python scripts/validate_skill_repo.py .
 ```
 
-What it checks:
-
-- required files and directories exist
-- `SKILL.md` frontmatter meets the expected structure
-- `agents/openai.yaml` includes the required interface fields
-- `eval/trigger-evals.json` is valid and internally consistent
-- templates do not force invented tags by default
-
-The repository also includes a GitHub Actions workflow at [.github/workflows/validate.yml](.github/workflows/validate.yml) to run the same validation on push and pull request.
+It checks the required files, the SKILL.md frontmatter (name format, a description of 1,024 characters or less), `agents/openai.yaml`, the trigger and forward eval files including the example files they reference, and that the feature template forces no invented tags. `.github/workflows/validate.yml` runs it on every push and pull request.
 
 ## Evaluation Strategy
 
-The evaluation assets are intentionally lightweight but more rigorous than a single static checklist.
+`eval/trigger-evals.json` holds 19 cases that must trigger the skill and 19 that must not, such as writing Playwright tests, drafting new acceptance criteria, or designing test cases from scratch. `eval/forward-evals.json` holds BDD forward tests with explicit expectations, including one where a strong artifact must yield `No material defects identified`. The test-case track is calibrated by the four graded example sets in `references/test-cases/`.
 
-- [eval/trigger-evals.json](eval/trigger-evals.json): trigger and non-trigger prompt coverage
-- [eval/forward-evals.json](eval/forward-evals.json): machine-readable forward-test cases with reusable expectations
-- [eval/behavior-checklist.md](eval/behavior-checklist.md): behavioral regression checklist
-- [eval/forward-test-matrix.md](eval/forward-test-matrix.md): scenario-based forward-test plan
-- [eval/eval-report-2026-03-26.md](eval/eval-report-2026-03-26.md): current repository-level evaluation snapshot
+## Contributing
 
-## Optional Integrations
+Edit in this repository, then copy the folder to `~/.agents/skills/test-case-reviewer/`. The installed copy is downstream and should never be edited directly.
 
-Compatible but out of scope for the current implementation:
+## License
 
-- shared-memory skill integration for organization-wide conventions
-- team-specific metadata schemas for tags or requirement IDs
-- custom repository validators or lint rules
-- framework-specific handoff patterns for Cucumber, Playwright, or Cypress
-
-These are optional extensions, not built-in behavior.
-
-## Maintainers
-
-Use the validator and the workflow in [scripts/validate_skill_repo.py](scripts/validate_skill_repo.py) and [.github/workflows/validate.yml](.github/workflows/validate.yml) to check packaging and release hygiene.
+MIT — see [LICENSE](LICENSE).

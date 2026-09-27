@@ -24,7 +24,7 @@
    Why it matters:
    Recommended fix:
 
-### Major
+### High
 
 1. Artifact:
    Evidence:
@@ -32,7 +32,15 @@
    Why it matters:
    Recommended fix:
 
-### Minor
+### Medium
+
+1. Artifact:
+   Evidence:
+   Issue:
+   Why it matters:
+   Recommended fix:
+
+### Low
 
 1. Artifact:
    Evidence:

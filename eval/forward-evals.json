@@ -1,13 +1,13 @@
 {
-  "skill_name": "agentic-bdd-test-case-mentor",
+  "skill_name": "test-case-reviewer",
   "evals": [
     {
       "id": 1,
       "prompt": "Review the attached feature file against the attached account sign-in and account-locking requirements. Return oracle used, oracle sufficiency, confidence, severity-ranked findings, a short traceability and coverage assessment, and the top recommendations.",
       "expected_output": "A findings-first review that cites the authoritative source, lowers confidence only as needed, flags UI-driven language, and calls out any coverage or traceability gaps without inventing metadata.",
       "files": [
-        "examples/review-input.feature",
-        "examples/review-oracle.md"
+        "examples/bdd/review-input.feature",
+        "examples/bdd/review-oracle.md"
       ],
       "expectations": [
         "Names the oracle sources used and reports oracle sufficiency explicitly.",
@@ -21,7 +21,7 @@
       "prompt": "Rewrite the attached discount scenarios so they are stakeholder-facing, preserve the intended rules, split overloaded behavior when needed, and list unsupported assumptions separately.",
       "expected_output": "A cleaner set of business-readable scenarios that preserve intent, improve naming and outcomes, and separate assumptions from confirmed behavior.",
       "files": [
-        "examples/rewrite-source.feature"
+        "examples/bdd/rewrite-source.feature"
       ],
       "expectations": [
         "Preserves the Gold-customer discount intent instead of changing the business rule.",
@@ -35,7 +35,7 @@
       "prompt": "Generate a BDD feature file from the attached user story and acceptance criteria. Include the supported main path and expired-link rejection path, and list unresolved assumptions separately.",
       "expected_output": "A generated feature file for password reset that covers the supported main and rejection paths while keeping missing rules explicit.",
       "files": [
-        "examples/generation-source.md"
+        "examples/bdd/generation-source.md"
       ],
       "expectations": [
         "Uses the provided user story and acceptance criteria as source inputs.",
@@ -49,8 +49,8 @@
       "prompt": "Review and improve the attached password reset draft against the attached acceptance criteria. Keep the findings short, then provide the corrected artifact and list open assumptions.",
       "expected_output": "A hybrid response that makes oracle sufficiency and confidence explicit, highlights the most material defects, and follows with a corrected password-reset feature.",
       "files": [
-        "examples/hybrid-source.feature",
-        "examples/generation-source.md"
+        "examples/bdd/hybrid-source.feature",
+        "examples/bdd/generation-source.md"
       ],
       "expectations": [
         "Uses hybrid mode with short findings before the rewritten artifact.",
@@ -64,8 +64,8 @@
       "prompt": "Produce a formal BDD review report for the attached feature file against the attached requirements. Include an executive summary, oracle sufficiency and confidence, severity-ranked findings with evidence, traceability and coverage assessment, coaching recommendations, and an action plan.",
       "expected_output": "A formal report that follows the review template, separates confirmed defects from missing information, and gives actionable coaching advice.",
       "files": [
-        "examples/review-input.feature",
-        "examples/review-oracle.md"
+        "examples/bdd/review-input.feature",
+        "examples/bdd/review-oracle.md"
       ],
       "expectations": [
         "Uses a formal report structure rather than the default lightweight review contract.",

@@ -37,8 +37,9 @@ For each finding, include:
 ## Severity guide
 
 - `Critical`: the behavior is wrong, contradictory, missing, or too ambiguous to trust
-- `Major`: the artifact quality is weak enough to mislead implementation, review, or automation
-- `Minor`: wording, readability, metadata, or low-risk cleanup issue
+- `High`: the artifact is likely to mislead implementation, review, automation, or sign-off
+- `Medium`: a real quality defect with limited reach, such as one weak outcome or a readable but mixed scenario
+- `Low`: wording, readability, metadata, or low-risk cleanup
 
 ## Scoring guide
 

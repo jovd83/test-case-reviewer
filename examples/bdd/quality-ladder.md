@@ -26,15 +26,15 @@ Oracle sufficiency: weak
 Confidence: low
 
 Findings:
-1. Major: The scenario is a UI script rather than business-readable behavior.
+1. High: The scenario is a UI script rather than business-readable behavior.
    Evidence: "I click the login field", "I click the button"
    Why it matters: The scenario will not serve as durable business documentation.
    Fix: Rewrite the steps in domain language around sign-in behavior.
-2. Major: The expected result is vague.
+2. High: The expected result is vague.
    Evidence: "Then it works"
    Why it matters: The outcome is not verifiable.
    Fix: Replace it with an observable result such as access to the dashboard.
-3. Minor: The title is too generic.
+3. Low: The title is too generic.
    Evidence: "Scenario: Test login"
    Why it matters: It does not describe the condition and the outcome.
    Fix: Rename it to reflect the user behavior and result.
@@ -64,15 +64,15 @@ Oracle sufficiency: weak
 Confidence: low
 
 Findings:
-1. Major: The scenario combines multiple behaviors.
+1. High: The scenario combines multiple behaviors.
    Evidence: discount calculation and order confirmation appear in the same scenario.
    Why it matters: Mixed behaviors make coverage and maintenance harder.
    Fix: Split discount calculation and checkout confirmation into separate scenarios if they represent different rules.
-2. Major: The expected outcome is vague.
+2. High: The expected outcome is vague.
    Evidence: "Then the discount is correct"
    Why it matters: The scenario does not say what correct means.
    Fix: Use a concrete amount, rate, or business outcome.
-3. Minor: The feature title is too broad.
+3. Low: The feature title is too broad.
    Evidence: "Feature: Discounts"
    Why it matters: The scope is unclear.
    Fix: Rename the feature around a specific capability or rule set.
@@ -127,8 +127,8 @@ Oracle sufficiency: partial
 Confidence: medium
 
 Key findings:
-1. Major: Coverage is missing the expired-link rejection path.
-2. Major: The main scenario does not state an externally visible post-reset result.
+1. High: Coverage is missing the expired-link rejection path.
+2. High: The main scenario does not state an externally visible post-reset result.
 
 Rewritten artifact:
 Feature: Password reset by registered user

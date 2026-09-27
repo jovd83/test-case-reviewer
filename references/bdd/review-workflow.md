@@ -86,8 +86,9 @@ Do not invent a house style that the user did not ask for.
 Use this severity model:
 
 - `Critical`: the business behavior is wrong, contradictory, missing, or too ambiguous to trust
-- `Major`: the artifact is likely to mislead implementation, review, or automation
-- `Minor`: cleanup, readability, or low-risk metadata issue
+- `High`: the artifact is likely to mislead implementation, review, automation, or sign-off
+- `Medium`: a real quality defect with limited reach, such as one weak outcome or a readable but mixed scenario
+- `Low`: wording, readability, metadata, or low-risk cleanup
 
 Write the response in this order:
 

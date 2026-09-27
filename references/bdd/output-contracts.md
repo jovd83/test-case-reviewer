@@ -102,7 +102,7 @@ Blocked decisions:
 
 ## Formal report contract
 
-Use [../assets/review-report-template.md](../assets/review-report-template.md) when the user explicitly asks for:
+Use [../../assets/bdd-review-report-template.md](../../assets/bdd-review-report-template.md) when the user explicitly asks for:
 
 - a formal review report
 - an executive summary

@@ -1,7 +1,7 @@
 interface:
-  display_name: "BDD Test Case Mentor"
-  short_description: "Review, rewrite, generate, and report on business-readable Gherkin."
-  default_prompt: "Use $agentic-bdd-test-case-mentor to review, rewrite, generate, or formally assess BDD and Gherkin artifacts from requirements, business rules, or existing feature files."
+  display_name: "Test Case Reviewer"
+  short_description: "Review, score and fix drafted test cases and BDD scenarios."
+  default_prompt: "Use $test-case-reviewer to review, score or mentor drafted test cases, test suites or BDD/Gherkin feature files against their requirements, and to rewrite them or draft Gherkin when asked."
 
 policy:
   allow_implicit_invocation: true
