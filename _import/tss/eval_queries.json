@@ -1,0 +1,82 @@
+[
+  {
+    "query": "Review these drafted API test cases and tell me which acceptance criteria are still uncovered.",
+    "should_trigger": true
+  },
+  {
+    "query": "Mentor a junior tester's UC-14 scenarios and give me a structured quality score.",
+    "should_trigger": true
+  },
+  {
+    "query": "Audit this test suite hierarchy for redundancy and explain whether the MSS, EXT, and ERR grouping makes sense.",
+    "should_trigger": true
+  },
+  {
+    "query": "Check whether these manual test cases are using the right test design techniques for boundary values and business rules.",
+    "should_trigger": true
+  },
+  {
+    "query": "I want a review report for these drafted regression tests before we automate them.",
+    "should_trigger": true
+  },
+  {
+    "query": "Can you inspect this requirement-to-test traceability matrix and find coverage gaps?",
+    "should_trigger": true
+  },
+  {
+    "query": "Please review these test scenarios for missing negative paths and weak expected results.",
+    "should_trigger": true
+  },
+  {
+    "query": "Do these UAT test cases actually prove the business rules, or are they too shallow?",
+    "should_trigger": true
+  },
+  {
+    "query": "Evaluate this batch-processing test suite and tell me whether the suite split still makes sense.",
+    "should_trigger": true
+  },
+  {
+    "query": "Score this drafted test set for traceability, coverage, and standards compliance.",
+    "should_trigger": true
+  },
+  {
+    "query": "Write Playwright tests for this login page.",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate a brand new test plan for our release.",
+    "should_trigger": false
+  },
+  {
+    "query": "Summarize this bug ticket in plain English.",
+    "should_trigger": false
+  },
+  {
+    "query": "Convert these CSV files into JSON.",
+    "should_trigger": false
+  },
+  {
+    "query": "Set up GitHub Actions to run our API automation suite nightly.",
+    "should_trigger": false
+  },
+  {
+    "query": "Draft new acceptance criteria for a password reset feature.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create JUnit tests for this Java service.",
+    "should_trigger": false
+  },
+  {
+    "query": "Rewrite these flaky Selenium tests in Cypress.",
+    "should_trigger": false
+  },
+  {
+    "query": "Make a dashboard showing regression execution trends.",
+    "should_trigger": false
+  },
+  {
+    "query": "Turn these user stories into fresh test cases from scratch.",
+    "should_trigger": false
+  }
+]

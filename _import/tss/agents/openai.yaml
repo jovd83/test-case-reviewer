@@ -1,0 +1,4 @@
+interface:
+  display_name: "TSS Test Case Reviewer"
+  short_description: "Review drafted tests for quality gaps"
+  default_prompt: "Use $tss-test-case-reviewer to review these drafted test cases, UAT scenarios, or test suites for traceability, coverage gaps, technical correctness, and standards compliance before execution or sign-off."
